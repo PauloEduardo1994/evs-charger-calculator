@@ -1,7 +1,6 @@
-import { useState } from 'react'
 import Lottie from 'react-lottie'
 
-import { Theme, useTheme } from '@siakit/core'
+import { useTheme } from '@siakit/core'
 import { Heading } from '@siakit/heading'
 import { Flex } from '@siakit/layout'
 import { Tooltip } from '@siakit/tooltip'
@@ -11,10 +10,8 @@ import { Calculator } from './pages/Calculator/Calculator'
 
 export function App() {
   const { togggleTheme, changeColor, theme } = useTheme()
-  const [themeDefault, setThemeDefault] = useState<Theme>('dark')
 
   changeColor('violet')
-  togggleTheme(themeDefault)
 
   return (
     <Flex flex>
@@ -31,10 +28,10 @@ export function App() {
                 }}
                 onClick={() => {
                   if (theme === 'dark') {
-                    setThemeDefault('light')
+                    togggleTheme('light')
                   }
                   if (theme === 'light') {
-                    setThemeDefault('dark')
+                    togggleTheme('dark')
                   }
                 }}
               >
