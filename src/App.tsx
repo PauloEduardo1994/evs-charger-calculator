@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Lottie from 'react-lottie'
 
-import { useTheme } from '@siakit/core'
+import { Theme, useTheme } from '@siakit/core'
 import { Heading } from '@siakit/heading'
 import { Flex } from '@siakit/layout'
 import { Tooltip } from '@siakit/tooltip'
@@ -11,7 +11,7 @@ import { Calculator } from './pages/Calculator/Calculator'
 
 export function App() {
   const { togggleTheme, changeColor, theme } = useTheme()
-  const [themeDefault, setThemeDefault] = useState<any>('dark')
+  const [themeDefault, setThemeDefault] = useState<Theme>('dark')
 
   changeColor('violet')
   togggleTheme(themeDefault)
