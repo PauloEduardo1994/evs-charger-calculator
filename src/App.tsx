@@ -17,57 +17,51 @@ export function App() {
   togggleTheme(themeDefault)
 
   return (
-    <>
-      <Flex overflow padding align="center">
-        <Flex overflow direction="column">
-          <Flex padding="0 0 16px 0">
+    <Flex flex>
+      <Flex flex overflow padding direction="column">
+        <Flex align="start">
+          <Flex align="center">
+            <Tooltip content="Click to change theme">
+              <button
+                style={{
+                  color: '#6e56cf',
+                  cursor: 'pointer',
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                }}
+                onClick={() => {
+                  if (theme === 'dark') {
+                    setThemeDefault('light')
+                  }
+                  if (theme === 'light') {
+                    setThemeDefault('dark')
+                  }
+                }}
+              >
+                <Flex>
+                  <Lottie
+                    height={56}
+                    width={56}
+                    options={{
+                      autoplay: true,
+                      loop: true,
+                      animationData: Car,
+                      rendererSettings: {
+                        preserveAspectRatio: 'xMidYMid slice',
+                      },
+                    }}
+                  />
+                </Flex>
+              </button>
+            </Tooltip>
             <Heading>Simulador de carregamento</Heading>
           </Flex>
-          <Tooltip content="Click to change theme">
-            <button
-              style={{
-                color: '#6e56cf',
-                cursor: 'pointer',
-                backgroundColor: 'transparent',
-                border: 'none',
-              }}
-              onClick={() => {
-                if (theme === 'dark') {
-                  setThemeDefault('light')
-                }
-                if (theme === 'light') {
-                  setThemeDefault('dark')
-                }
-              }}
-            >
-              <Flex>
-                <Lottie
-                  height={160}
-                  width={160}
-                  options={{
-                    autoplay: true,
-                    loop: true,
-                    animationData: Car,
-                    rendererSettings: {
-                      preserveAspectRatio: 'xMidYMid slice',
-                    },
-                  }}
-                />
-              </Flex>
-            </button>
-          </Tooltip>
+        </Flex>
+
+        <Flex overflow flex direction="column" align="center" justify="center">
+          <Calculator />
         </Flex>
       </Flex>
-      <Flex
-        overflow
-        flex
-        direction="column"
-        align="center"
-        justify="center"
-        padding
-      >
-        <Calculator />
-      </Flex>
-    </>
+    </Flex>
   )
 }

@@ -97,7 +97,7 @@ export function Calculator() {
       <Form flex overflow ref={formRef} onSubmit={handleSubmit}>
         <Flex flex overflow align="center">
           <Card flex overflow direction="column" flexWrap="wrap" gap>
-            <Flex gap={32} direction="column" padding>
+            <Flex gap direction="column" padding>
               <Select
                 name="selectCharger"
                 label="Selecione o carregador *"
