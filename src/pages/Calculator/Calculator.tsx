@@ -23,11 +23,10 @@ import Charger from '../../lottie/charger.json'
 export function Calculator() {
   const formRef = useRef<FormHandles>(null)
   const [priceCharger, setPriceCharger] = useState(0)
-  const [timeForCharger, setTimeForCharger] = useState(0)
+  const [hourCharger, setHourCharger] = useState('00')
+  const [minutesCharger, setMinutesCharger] = useState('00')
   const [priceForKm, setPriceForKm] = useState(0)
   const [modalVisible, setModalVisible] = useState(false)
-
-  console.log(priceCharger, timeForCharger, priceForKm)
 
   async function handleSubmit(result: any): Promise<any> {
     try {
@@ -69,10 +68,21 @@ export function Calculator() {
         setModalVisible(true)
       }
 
-      const resultTimeForCharger = result.batterySize / resultSelectCharger
+      const resultTimeForCharger =
+        (result.batterySize / resultSelectCharger) * 60
+
+      const hour = String(Math.floor(resultTimeForCharger / 60)).padStart(
+        2,
+        '0',
+      )
+      const minutes = String(Math.floor(resultTimeForCharger % 60)).padStart(
+        2,
+        '0',
+      )
 
       setPriceCharger(resultPriceOfCharger)
-      setTimeForCharger(resultTimeForCharger)
+      setHourCharger(hour)
+      setMinutesCharger(minutes)
       setPriceForKm(resultPriceForKm)
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
@@ -87,7 +97,8 @@ export function Calculator() {
 
   function handleResetReseult(): any {
     setPriceCharger(0)
-    setTimeForCharger(0)
+    setHourCharger('00')
+    setMinutesCharger('00')
     setPriceForKm(0)
     formRef?.current?.reset()
   }
@@ -165,7 +176,7 @@ export function Calculator() {
             direction="column"
             gap={8}
             padding
-            width={380}
+            width={420}
           >
             <Flex justify="between">
               <Text>Preço médio para carga completa:</Text>
@@ -180,16 +191,20 @@ export function Calculator() {
             <Separator />
             <Flex align="center" justify="between">
               <Text>Tempo médio para carga completa:</Text>
-              <Text>{timeForCharger.toFixed(2)} H/m</Text>
+              <Text>
+                {hourCharger}:{minutesCharger} Horas
+              </Text>
             </Flex>
             <Separator />
             <Flex align="center" justify="between">
               <Text>Valor pago por km rodado:</Text>
-              {priceForKm.toLocaleString('PT-BR', {
-                minimumFractionDigits: 2,
-                style: 'currency',
-                currency: 'BRL',
-              })}
+              <Text>
+                {priceForKm.toLocaleString('PT-BR', {
+                  minimumFractionDigits: 2,
+                  style: 'currency',
+                  currency: 'BRL',
+                })}
+              </Text>
             </Flex>
             <Flex>
               <Lottie
