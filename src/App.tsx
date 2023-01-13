@@ -1,7 +1,7 @@
-// import { useState } from 'react'
+import { useState } from 'react'
 import Lottie from 'react-lottie'
 
-// import { useTheme } from '@siakit/core'
+import { useTheme } from '@siakit/core'
 import { Heading } from '@siakit/heading'
 import { Flex } from '@siakit/layout'
 import { Tooltip } from '@siakit/tooltip'
@@ -10,11 +10,11 @@ import Car from './lottie/Comp 1 (1).json'
 import { Calculator } from './pages/Calculator/Calculator'
 
 export function App() {
-  // const { togggleTheme, changeColor, theme } = useTheme()
-  // const [themeDefault, setThemeDefault] = useState<any>('dark')
+  const { togggleTheme, changeColor, theme } = useTheme()
+  const [themeDefault, setThemeDefault] = useState<any>('dark')
 
-  // changeColor('violet')
-  // togggleTheme(themeDefault)
+  changeColor('violet')
+  togggleTheme(themeDefault)
 
   return (
     <>
@@ -24,7 +24,7 @@ export function App() {
             <Heading>Simulador de carregamento</Heading>
           </Flex>
           <Tooltip content="Click to change theme">
-            {/* <button
+            <button
               style={{
                 color: '#6e56cf',
                 cursor: 'pointer',
@@ -39,22 +39,22 @@ export function App() {
                   setThemeDefault('dark')
                 }
               }}
-            > */}
-            <Flex>
-              <Lottie
-                height={160}
-                width={160}
-                options={{
-                  autoplay: true,
-                  loop: true,
-                  animationData: Car,
-                  rendererSettings: {
-                    preserveAspectRatio: 'xMidYMid slice',
-                  },
-                }}
-              />
-            </Flex>
-            {/* </button> */}
+            >
+              <Flex>
+                <Lottie
+                  height={160}
+                  width={160}
+                  options={{
+                    autoplay: true,
+                    loop: true,
+                    animationData: Car,
+                    rendererSettings: {
+                      preserveAspectRatio: 'xMidYMid slice',
+                    },
+                  }}
+                />
+              </Flex>
+            </button>
           </Tooltip>
         </Flex>
       </Flex>
