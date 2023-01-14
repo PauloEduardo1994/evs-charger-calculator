@@ -3,6 +3,7 @@ import Lottie from 'react-lottie'
 import { useTheme } from '@siakit/core'
 import { Heading } from '@siakit/heading'
 import { Flex } from '@siakit/layout'
+import { LinkButton } from '@siakit/link-button'
 import { Tooltip } from '@siakit/tooltip'
 
 import Car from './lottie/Comp 1 (1).json'
@@ -53,6 +54,19 @@ export function App() {
             </Tooltip>
             <Heading>Simulador de carregamento</Heading>
           </Flex>
+        </Flex>
+        <Flex direction="column" align="center" gap padding margin="40px 0 0 0">
+          <Heading>Continuation</Heading>
+          <LinkButton
+            type="button"
+            onClick={() =>
+              window.open(
+                'https://github.com/PauloEduardo1994/evs-charger-instructions',
+              )
+            }
+          >
+            Click Here
+          </LinkButton>
         </Flex>
 
         <Flex overflow flex direction="column" align="center" justify="center">
